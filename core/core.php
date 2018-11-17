@@ -5,4 +5,8 @@
 
 	// Includes all the classes broght by Composer
 	require 'vendor/autoload.php';
+
+	// the .env file settings
+	$dotenv = new Dotenv\Dotenv(dirname(__DIR__));
+	$dotenv->load();
 ?>

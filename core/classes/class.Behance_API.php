@@ -7,6 +7,8 @@
 	class BehanceAPI
 	{
 		
+		// protected $
+
 		function __construct()
 		{
 			echo 'This is the BehanceAPI class Nojoda';
