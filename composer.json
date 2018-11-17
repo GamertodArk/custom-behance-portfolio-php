@@ -1,0 +1,18 @@
+{
+    "name": "gamertod/custom_behance_portfolio",
+    "description": "This is a custom behance portfolio built with PHP and the Behance API",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Elvis Garcia",
+            "email": "cavesagarcia@hotmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "BehanceAPI\\": "core/classes/"
+        }
+    }
+}
