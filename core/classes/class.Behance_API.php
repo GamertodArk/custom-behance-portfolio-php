@@ -15,7 +15,6 @@
 
 		public $user_data;
 		public $user_projects;
-		public $ssl_verification;
 
 		function __construct()
 		{
@@ -47,7 +46,7 @@
 			// Execute the call
 			$response = curl_exec($this->curl_ch);
 
-			// Check of there's any error
+			// Check if there's any error
 			false === $response ? $this->error_handler() : '';
 
 			// Convert the response into an array
