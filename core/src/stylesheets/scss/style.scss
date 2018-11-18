@@ -63,3 +63,53 @@ header {
 		}
 	}
 }
+
+main {
+	.projects_wrap {
+		width: 100%;
+		padding: 2em;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+
+		.project {
+			width: calc(100% / 3.5);
+			margin: 2em 0px;
+
+			img {
+				width: 100%;
+				border-radius: 5px;
+			}
+
+			.project_info {
+				text-align: center;
+
+				h3 {
+					font-size: 14px;
+					margin: 0.3em 0px;
+					color: $slight_dark_blue;
+				}
+
+				ul {
+					list-style: none;
+					@include center-flex;
+
+					li {
+						font-size: 12px;
+						margin: 0px 0.4em; 
+						color: darken($light_grey, 30%);
+
+						&:after {
+							content: ",";
+						}
+
+						&:last-child:after {
+							content: "";
+						}
+					}
+				}
+			}
+		}
+	}
+}

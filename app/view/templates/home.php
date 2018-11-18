@@ -24,5 +24,28 @@
 		 	</div>
 		 </div>
 	</header>
+	<main>
+		<div class="projects_wrap">
+			<?php 
+				foreach ($projects as $project) {
+					echo '
+					<div class="project">
+						<img src="'. $project['covers']['404'] .'" alt="'. $project['name'] .'">
+
+						<div class="project_info">
+							<h3>'. $project['name'] .'</h3>
+							<ul>';
+
+								foreach ($project['fields'] as $field) {
+									echo '<li>'. $field .'</li>';
+								}
+
+						echo'</ul>
+						</div>
+					</div>';
+				}
+			?>
+		</div>
+	</main>
 </body>
 </html>
