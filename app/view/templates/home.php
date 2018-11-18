@@ -47,5 +47,8 @@
 			?>
 		</div>
 	</main>
+	<footer>
+		<p>Powered By</p> <a target="_blank" href="#"><i class="fi-social-behance"></i></a>
+	</footer>
 </body>
 </html>

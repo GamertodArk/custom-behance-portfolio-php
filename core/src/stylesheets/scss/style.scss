@@ -113,3 +113,18 @@ main {
 		}
 	}
 }
+
+footer {
+	padding: 3em;
+	text-align: center;
+
+	p {
+		margin-bottom: 1em;
+		color: darken($light_grey, 30%);
+	}
+
+	a {
+		color: $blue;
+		font-size: 3em;
+	}
+}

@@ -95,3 +95,16 @@ main .projects_wrap .project .project_info ul li:after {
 main .projects_wrap .project .project_info ul li:last-child:after {
   content: "";
 }
+
+footer {
+  padding: 3em;
+  text-align: center;
+}
+footer p {
+  margin-bottom: 1em;
+  color: #aeaeae;
+}
+footer a {
+  color: #1769ff;
+  font-size: 3em;
+}
