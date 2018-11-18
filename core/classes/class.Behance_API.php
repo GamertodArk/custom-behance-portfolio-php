@@ -15,6 +15,7 @@
 
 		public $user_data;
 		public $user_projects;
+		public $ssl_verification;
 
 		function __construct()
 		{
@@ -31,9 +32,6 @@
 			// Set some general settings for curl
 			curl_setopt($this->curl_ch, CURLOPT_HEADER, false);
 			curl_setopt($this->curl_ch, CURLOPT_RETURNTRANSFER, true);
-
-			// I need to desactivate this soon
-			curl_setopt($this->curl_ch, CURLOPT_SSL_VERIFYPEER, false);
 		}
 
 		// this function brings all the user information
@@ -70,7 +68,7 @@
 			// Execute the call
 			$response = curl_exec($this->curl_ch);
 
-			// Check of there's any error
+			// Check if there's any error
 			false === $response ? $this->error_handler() : '';
 
 			// Convert the response into an array
@@ -82,8 +80,14 @@
 
 		protected function error_handler()
 		{
-			// print_r(expression)
 			echo 'cURL error: ' . curl_error($this->curl_ch);
+			exit();
+		}
+
+		// This function desactivate the ssl verification
+		public function desc_ssl_verify()
+		{
+			curl_setopt($this->curl_ch, CURLOPT_SSL_VERIFYPEER, false);
 		}
 
 		function __destruct()
