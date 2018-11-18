@@ -7,19 +7,19 @@ This is my PHP edition of the custom behance portolio. I tried to build it from 
 Run this line
 
 ```bash
-	git clone git@github.com:GamertodArk/custom-behance-portfolio-php.git
+git clone git@github.com:GamertodArk/custom-behance-portfolio-php.git
 ```
 
 Now install the dependencies with composer
 
 ```bash
-	composer install
+composer install
 ```
 
 Now create the optimize outload files to load the custom api class
 
 ```bash
-	composer dump-autoload -o
+composer dump-autoload -o
 ```
 
 Then rename the `.env.example` to `.env` and filled the requestd data
@@ -40,4 +40,4 @@ BEHANCE_PER_PAGE=12
 ```
 
 ## Screenshot
-![Home page](https://github.com/GamertodArk/custom-behance-portfolio-php/project-screenshot/home-page.png "Home page")
+![Custom Behance Portfolio PHP](https://github.com/GamertodArk/custom-behance-portfolio-php/blob/master/project-screenshot/home-page.png "Custom Behance Portfolio PHP")
