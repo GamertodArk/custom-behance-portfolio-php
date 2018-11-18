@@ -33,7 +33,8 @@
 						<img src="'. $project['covers']['404'] .'" alt="'. $project['name'] .'">
 
 						<div class="project_info">
-							<h3>'. $project['name'] .'</h3>
+							<!-- <h3>'. $project['name'] .'</h3> -->
+							<a target="_blank" href="'. $project['url'] .'">'. $project['name'] .'</a>
 							<ul>';
 
 								foreach ($project['fields'] as $field) {
@@ -48,7 +49,7 @@
 		</div>
 	</main>
 	<footer>
-		<p>Powered By</p> <a target="_blank" href="#"><i class="fi-social-behance"></i></a>
+		<p>Powered By</p> <a target="_blank" href="<?php echo $user['url'] ?>"><i class="fi-social-behance"></i></a>
 	</footer>
 </body>
 </html>

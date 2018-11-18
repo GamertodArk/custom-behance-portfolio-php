@@ -73,10 +73,15 @@ main .projects_wrap .project img {
 main .projects_wrap .project .project_info {
   text-align: center;
 }
-main .projects_wrap .project .project_info h3 {
+main .projects_wrap .project .project_info h3, main .projects_wrap .project .project_info a {
   font-size: 14px;
   margin: 0.3em 0px;
+  font-weight: 600;
+  text-decoration: none;
   color: #6b919f;
+}
+main .projects_wrap .project .project_info > a:hover {
+  text-decoration: underline;
 }
 main .projects_wrap .project .project_info ul {
   list-style: none;

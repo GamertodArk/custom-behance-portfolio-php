@@ -85,10 +85,16 @@ main {
 			.project_info {
 				text-align: center;
 
-				h3 {
+				h3,a {
 					font-size: 14px;
 					margin: 0.3em 0px;
+					font-weight: $bold;
+					text-decoration: none;
 					color: $slight_dark_blue;
+				}
+
+				> a:hover {
+					text-decoration: underline;
 				}
 
 				ul {
