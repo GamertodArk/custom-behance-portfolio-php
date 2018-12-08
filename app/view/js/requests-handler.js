@@ -40,11 +40,29 @@ for (var i = 0; i < projects_cover.length; i++) {
 		fetch(myRequest)
 			.then(resp => resp.text())
 			.then(data => {
-				// console.log(typeof data);
-				let project_data = JSON.parse(data);
-				console.log(project_data);
-
 				
+				let project_img_data = JSON.parse(data).project.modules;
+
+				let items = [];
+				project_img_data.forEach(element => {
+					
+					if (element.type === 'image') {
+						
+						item_data = {
+							src: element.sizes['1400'],
+							w: element.dimensions['1400'].width,
+							h: element.dimensions['1400'].height							
+						}
+
+						items.push(item_data);
+					}  
+				});
+
+				// Init PhotoSwipe
+				let photoswipe_dom = document.getElementById('pswp');
+				let gallery = new PhotoSwipe( photoswipe_dom, PhotoSwipeUI_Default, items);
+				gallery.init();
+
 			})
 			.catch(error => console.log(error));
 	});
