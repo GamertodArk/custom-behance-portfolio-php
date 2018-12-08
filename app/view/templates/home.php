@@ -30,7 +30,7 @@
 				foreach ($projects as $project) {
 					echo '
 					<div class="project">
-						<img src="'. $project['covers']['404'] .'" alt="'. $project['name'] .'">
+						<img class="project-cover" src="'. $project['covers']['404'] .'" alt="'. $project['name'] .'" data-project-id="'. $project['id'] .'">
 
 						<div class="project_info">
 							<!-- <h3>'. $project['name'] .'</h3> -->
@@ -51,5 +51,6 @@
 	<footer>
 		<p>Powered By</p> <a target="_blank" href="<?php echo $user['url'] ?>"><i class="fi-social-behance"></i></a>
 	</footer>
+	<script src="app/view/js/requests-handler.js"></script>
 </body>
 </html>

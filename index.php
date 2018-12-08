@@ -15,15 +15,24 @@
 	*/
 	include 'core/core.php';
 
-	/**
-	* This is the router itself.
-	*
-	* In any other project, the router based on any mechanism would include
-	* one controller based on the link/url entered, in this case there's only 1 
-	* page so it doesn't matter wich url the user enters, we'll include just I 
-	* controller
-	*
-	* @return controllers
-	*/
-	include CONT_DIR . 'portfolio_controller.php';
+
+	/** ADD COMMENT **/
+	if (isset($_GET['view'])) {
+		if (file_exists(CONT_DIR . strtolower($_GET['view']) . '_controller.php')) {
+			include CONT_DIR . strtolower($_GET['view']) . '_controller.php';
+		}else {
+			echo '404';
+		}
+	}else {
+		include CONT_DIR . 'portfolio_controller.php';
+	}
+
+
+	// Tasks
+	// add comments in the project_controller.php
+	// add comments to the rotuer in the index.php
+	// Male the code in class.Behance_API.php more DRY
+	// make more readebale the code in the requests-handler.js
+
+	// check for the http_code: 200
 ?>

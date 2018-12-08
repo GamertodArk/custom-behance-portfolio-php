@@ -39,6 +39,10 @@
 		*/
 		protected $api_endpoint;
 
+		/**
+		* @var string Contains the behance api projects endpint
+		*/
+		protected $projects_endpoint;
 		/** 
 		* @var array|empty should have the user data 
 		*/
@@ -48,6 +52,11 @@
 		* @var array|empty should have the projects data 
 		*/
 		public $user_projects;
+
+		/**
+		* @var
+		*/
+		public $project_info;
 
 
 		/**
@@ -63,6 +72,7 @@
 			$this->per_page = $_ENV['BEHANCE_PER_PAGE'];
 			$this->client_id = $_ENV['BEHANCE_CLIENT_ID'];
 			$this->api_endpoint = $_ENV['BEHANCE_API_ENDPOINT'];
+			$this->projects_endpoint = $_ENV['BEHANCE_PROJECTS_ENDPOINT'];
 
 			$this->curl_ch = curl_init();
 
@@ -119,6 +129,29 @@
 			$user_projects = json_decode($response, true);
 
 			$this->user_projects = $user_projects;
+		}
+
+		/**
+		* This method pulls all the information of a specific project.
+		*
+		* This method retrives all the information of a specific project from behance
+		* using the Behance API, it needs a project id to make the call which is given as
+		* a parameter. All the project information pulled through this class is in the
+		* $this->project_info attribute.
+		*
+		* @return void
+		*/
+		public function project_data($project_id)
+		{
+			$req_url = $this->projects_endpoint . $project_id . '?api_key=' . $this->client_id;
+
+			curl_setopt($this->curl_ch, CURLOPT_URL, $req_url);
+
+			$response = curl_exec($this->curl_ch);
+
+			false === $response ? $this->error_handler() : '';
+
+			$this->project_info = $response;
 		}
 
 		/**
