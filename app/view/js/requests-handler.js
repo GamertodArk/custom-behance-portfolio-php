@@ -19,7 +19,6 @@ for (var i = 0; i < projects_cover.length; i++) {
 	let img_cover = projects_cover[i];
 
 	img_cover.addEventListener('click', event => {
-		console.log(event.target.getAttribute('data-project-id'));
 
 		let url = '?view=project';
 
@@ -48,10 +47,20 @@ for (var i = 0; i < projects_cover.length; i++) {
 					
 					if (element.type === 'image') {
 						
-						item_data = {
-							src: element.sizes['1400'],
-							w: element.dimensions['1400'].width,
-							h: element.dimensions['1400'].height							
+						if (element.sizes['1400']) {
+
+							item_data = {
+								src: element.sizes['1400'],
+								w: element.dimensions['1400'].width,
+								h: element.dimensions['1400'].height							
+							}
+
+						}else {
+							item_data = {
+								src: element.sizes.original,
+								w: element.dimensions.original.width,
+								h: element.dimensions.original.height
+							}
 						}
 
 						items.push(item_data);

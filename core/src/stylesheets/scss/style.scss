@@ -1,4 +1,3 @@
-
 // Base partials
 @import 'partials/base';
 
@@ -80,6 +79,10 @@ main {
 			img {
 				width: 100%;
 				border-radius: 5px;
+				
+				&:hover {
+					cursor: zoom-in;
+				}
 			}
 
 			.project_info {

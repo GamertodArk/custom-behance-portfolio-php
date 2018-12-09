@@ -1,5 +1,4 @@
 <?php
-	// use BehanceAPI\BehanceAPI;
 
 	if ($_POST) {
 
