@@ -6,8 +6,7 @@
 * to the Behance API, it's not secure to send the request from the view to
 * the behance servers so what this project does is that it sends the project
 * id to our server and our server sends the request with the project id and the 
-* client key secret to the behance server.
-*
+* client key to the behance server.
 */
 
 // Get all the projects in the page
@@ -18,14 +17,18 @@ for (var i = 0; i < projects_cover.length; i++) {
 	
 	let img_cover = projects_cover[i];
 
+	// Detect when the user cliks over a cover
 	img_cover.addEventListener('click', event => {
 
+		// the url where the request is gonna be send to.
 		let url = '?view=project';
 
+		// The data sent in the request
 		let data = {
 			project_id: event.target.getAttribute('data-project-id')
 		}
 
+		// The request information
 		let fetchData = {
 			method: 'POST',
 			body: `data=${JSON.stringify(data)}`,
@@ -34,21 +37,28 @@ for (var i = 0; i < projects_cover.length; i++) {
 			}
 		}
 
+		// We uses the new Request() class to create a request object
 		let myRequest = new Request(url,fetchData);
 
+		// Init fetch
 		fetch(myRequest)
 			.then(resp => resp.text())
 			.then(data => {
 				
+				// We put the needed information in a variable
 				let project_img_data = JSON.parse(data).project.modules;
 
+				// We itarate through all of the modules broght by fetch to get the link, with and height of the project images
 				let items = [];
 				project_img_data.forEach(element => {
 					
+					// Make sure we bring just the images
 					if (element.type === 'image') {
 						
+						// Check if the project images are available in this size
 						if (element.sizes['1400']) {
 
+							// JavaScript object with the information needed
 							item_data = {
 								src: element.sizes['1400'],
 								w: element.dimensions['1400'].width,
@@ -56,6 +66,8 @@ for (var i = 0; i < projects_cover.length; i++) {
 							}
 
 						}else {
+
+							// If the 1400 size is not available, we bring the original size
 							item_data = {
 								src: element.sizes.original,
 								w: element.dimensions.original.width,
@@ -63,6 +75,7 @@ for (var i = 0; i < projects_cover.length; i++) {
 							}
 						}
 
+						// We put all of the images with its height and width inside an array
 						items.push(item_data);
 					}  
 				});

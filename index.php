@@ -16,23 +16,23 @@
 	include 'core/core.php';
 
 
-	/** ADD COMMENT **/
+	/**
+	* This is the router for the requests sent to this webapp.
+	*
+	* This router checks for a $_GET['view'] variable, if a router with that 
+	* variable value as part of the name, we include it, if no router has that
+	* variable value as port of the name, we redirect the user to the main page.
+	* If the $_GET['view'] variable is not define, we include the router for the main page.
+	*
+	* @return void
+	*/
 	if (isset($_GET['view'])) {
 		if (file_exists(CONT_DIR . strtolower($_GET['view']) . '_controller.php')) {
 			include CONT_DIR . strtolower($_GET['view']) . '_controller.php';
 		}else {
-			echo '404';
+			header('location: ?view=portfolio');
 		}
 	}else {
 		include CONT_DIR . 'portfolio_controller.php';
 	}
-
-
-	// Tasks
-	// add comments in the project_controller.php
-	// add comments to the rotuer in the index.php
-	// Male the code in class.Behance_API.php more DRY
-	// make more readebale the code in the requests-handler.js
-
-	// check for the http_code: 200
 ?>

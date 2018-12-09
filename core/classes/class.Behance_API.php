@@ -84,9 +84,7 @@
 		* This method bring all the information of the the user from Behance.
 		*
 		* This method builds the URL based on the information passed from the .env file,
-		* then sets the URL to cURL and executes the request. it also checks if there's any error,
-		* if it finds one, it call the error handler which is in the same class. If the response
-		* is correct, it converts the response into an array and makes it available for the controller
+		* then it makes the response available for the controller
 		* trough the $user_data variable.
 		*
 		* @return void
@@ -95,16 +93,8 @@
 		{
 			
 			$url_endpoint = $this->api_endpoint . $this->user_id . '?client_id=' . $this->client_id;
+			$this->user_data = $this->send_request($url_endpoint);
 
-			curl_setopt($this->curl_ch, CURLOPT_URL, $url_endpoint);
-
-			$response = curl_exec($this->curl_ch);
-
-			false === $response ? $this->error_handler() : '';
-
-			$user_data = json_decode($response, true);
-
-			$this->user_data = $user_data;
 		}
 
 
@@ -119,16 +109,7 @@
 		public function user_projects()
 		{
 			$url_endpoint = $this->api_endpoint . $this->user_id . '/projects?client_id=' . $this->client_id . '&per_page=' . $this->per_page;
-
-			curl_setopt($this->curl_ch, CURLOPT_URL, $url_endpoint);
-
-			$response = curl_exec($this->curl_ch);
-
-			false === $response ? $this->error_handler() : '';
-
-			$user_projects = json_decode($response, true);
-
-			$this->user_projects = $user_projects;
+			$this->user_projects = $this->send_request($url_endpoint);
 		}
 
 		/**
@@ -144,14 +125,28 @@
 		public function project_data($project_id)
 		{
 			$req_url = $this->projects_endpoint . $project_id . '?api_key=' . $this->client_id;
+			$this->project_info = json_encode( $this->send_request($req_url) );
+		}
 
-			curl_setopt($this->curl_ch, CURLOPT_URL, $req_url);
+		/**
+		* Sends all the cURL requests.
+		*
+		* This method takes an url as a parameter, then it uses that url to send
+		* a request with cURL, then it checks if there's any error with the request,
+		* if there's any, it call the error handler, if there's not errors, then it
+		* decodes the json string and returns it to the another method.
+		*
+		* @return JSON
+		*/
+		protected function send_request(String $url)
+		{
+			curl_setopt($this->curl_ch, CURLOPT_URL, $url);
 
 			$response = curl_exec($this->curl_ch);
 
 			false === $response ? $this->error_handler() : '';
-
-			$this->project_info = $response;
+			
+			return json_decode($response, true);;
 		}
 
 		/**
