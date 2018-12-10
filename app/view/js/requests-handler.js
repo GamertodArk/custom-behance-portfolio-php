@@ -44,14 +44,19 @@ for (var i = 0; i < projects_cover.length; i++) {
 		fetch(myRequest)
 			.then(resp => resp.text())
 			.then(data => {
+
+				// console.log(JSON.parse(data));
 				
 				// We put the needed information in a variable
-				let project_img_data = JSON.parse(data).project.modules;
+				let project_img_data = JSON.parse(data).project.modules; // ? JSON.parse(data).project.modules : JSON.parse(data).project.componets;
+
+				// console.log(project_img_data);
 
 				// We itarate through all of the modules broght by fetch to get the link, with and height of the project images
 				let items = [];
 				project_img_data.forEach(element => {
 					
+
 					// Make sure we bring just the images
 					if (element.type === 'image') {
 						
@@ -77,7 +82,23 @@ for (var i = 0; i < projects_cover.length; i++) {
 
 						// We put all of the images with its height and width inside an array
 						items.push(item_data);
-					}  
+					}else if (element.type === 'media_collection') {
+						console.log(element);
+
+						element.components.forEach(element => {
+
+							item_data = {
+								src: element.sizes.source,
+								w: element.dimensions.source.width,
+								h: element.dimensions.source.height
+							}
+							
+							// We put all of the images with its height and width inside an array
+							items.push(item_data);
+							
+						});
+
+					}
 				});
 
 				// Init PhotoSwipe
