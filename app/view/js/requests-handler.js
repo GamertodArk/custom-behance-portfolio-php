@@ -44,20 +44,24 @@ for (var i = 0; i < projects_cover.length; i++) {
 		fetch(myRequest)
 			.then(resp => resp.text())
 			.then(data => {
-
-				// console.log(JSON.parse(data));
 				
 				// We put the needed information in a variable
 				let project_img_data = JSON.parse(data).project.modules; // ? JSON.parse(data).project.modules : JSON.parse(data).project.componets;
-
-				// console.log(project_img_data);
 
 				// We itarate through all of the modules broght by fetch to get the link, with and height of the project images
 				let items = [];
 				project_img_data.forEach(element => {
 					
 
-					// Make sure we bring just the images
+					/**
+					* Here we're expering two kinds of proejct information, the images and
+					* the media_collection. We need to make to diferent ways to get the information
+					* because the json structures are diferent in both of them. So in the first
+					* condicional we're checking for the image type structure and in the second
+					* condicional we're checking for the media_collection structure
+					*/
+
+					// Image type structure
 					if (element.type === 'image') {
 						
 						// Check if the project images are available in this size
@@ -80,11 +84,13 @@ for (var i = 0; i < projects_cover.length; i++) {
 							}
 						}
 
-						// We put all of the images with its height and width inside an array
+						// Put all the javascript objects in an array
 						items.push(item_data);
-					}else if (element.type === 'media_collection') {
-						console.log(element);
 
+					// media_collection type structure
+					}else if (element.type === 'media_collection') {
+
+						// Ireate trough all of the elements to get the image source, its width and height
 						element.components.forEach(element => {
 
 							item_data = {
@@ -93,7 +99,7 @@ for (var i = 0; i < projects_cover.length; i++) {
 								h: element.dimensions.source.height
 							}
 							
-							// We put all of the images with its height and width inside an array
+							// put all the javascripts objects created above in an array
 							items.push(item_data);
 							
 						});
